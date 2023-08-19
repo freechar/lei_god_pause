@@ -3,12 +3,11 @@ from lei_god import leiGod
 from task_manager import TaskManager
 from utils import passwdDecrypt
 from urllib.parse import parse_qs
-from tracer import tracer
+from tracer import tracer, logging
 from opentelemetry import trace
-from opentelemetry.trace import Status, StatusCode
-
-
 import os
+
+
 
 class MyHTTPRequestHandler(BaseHTTPRequestHandler):
     lei_god_client = {}
