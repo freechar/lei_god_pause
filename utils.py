@@ -1,6 +1,7 @@
 import hashlib 
 import base64
 from cryptography.fernet import Fernet
+
 your_string = "1145141919810"
 
 # 将字符串转换为字节串并进行 SHA-256 哈希

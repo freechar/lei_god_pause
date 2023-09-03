@@ -9,8 +9,6 @@ from opentelemetry.sdk.resources import SERVICE_NAME, Resource
 from opentelemetry.sdk._logs import LoggerProvider, LoggingHandler
 from opentelemetry.sdk._logs.export import BatchLogRecordProcessor, ConsoleLogExporter
 
-
-
 resource = Resource(attributes={
     SERVICE_NAME: "your-service-name"
 })
@@ -27,6 +25,6 @@ logger_provider.add_log_record_processor(BatchLogRecordProcessor(ConsoleLogExpor
 handler = LoggingHandler(level=logging.NOTSET, logger_provider=logger_provider)
 
 # Attach OTLP handler to root logger
-logging.getLogger().addHandler(handler)
-
-
+logger = logging.getLogger()
+logger.addHandler(handler)
+logger.setLevel(logging.DEBUG)

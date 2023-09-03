@@ -11,7 +11,6 @@ import ctypes
 import win32con
 
 
-
 def execute_task(task, *args):
     while True:
         print("Executing task:", task)
@@ -25,8 +24,8 @@ class Client:
         self.s = requests.session()
         self.init_config()
 
-    def update_time(self, game_list):
-        for game in game_list:
+    def update_time(self):
+        for game in self.game_list:
             if(is_game_running(game)): 
                 res  = self.s.get(url=self.server_host+f"/flash/{self.username}",headers={'token':"1145141919810"})
                 # 获取当前时间
@@ -95,7 +94,8 @@ if __name__ == "__main__":
                 # 处理注册失败的情况
                 print("失败:", msg)
                 raise Exception("register failed")
-            execute_task(c.update_time, c.username, c.game_list)
+            
+            execute_task(c.update_time)
         except KeyboardInterrupt:
             os._exit(0)
         except Exception as e:
