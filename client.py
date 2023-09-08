@@ -27,7 +27,7 @@ class Client:
     def update_time(self):
         for game in self.game_list:
             if(is_game_running(game)): 
-                res  = self.s.get(url=self.server_host+f"/flash/{self.username}",headers={'token':"1145141919810"})
+                res  = self.s.get(url=self.server_host+f"/flash/{self.username}",headers={'token':"1145141919810"}, timeout=30)
                 # 获取当前时间
                 current_time = datetime.now()
                 print(f"result: {res.text}, time: {current_time} user:{self.username}\n")

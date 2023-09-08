@@ -3,6 +3,7 @@ from lei_god import leiGod
 from task_manager import TaskManager
 from utils import passwdDecrypt
 from urllib.parse import parse_qs
+from datetime import datetime
 from tracer import tracer, logger
 from opentelemetry import trace
 import os
@@ -77,6 +78,7 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
                         self.end_headers()
                         self.wfile.write(b"Token validation successful.")
                         self.task_manager.schedule_task(username,5,self.lei_god_client[username].pause)
+                        logger.info(f"user: {username}, flash_schedule_task time:{datetime}")
                         flash_span.add_event("flash successful")
                     else:
                         self.send_response(401)
