@@ -38,7 +38,9 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
                         return
                     self.lei_god_client[username] = lei_god_client
                     register_span.add_event("lei_god_client login successful")
-
+                    # clear task before
+                    self.task_manager.cancel_task(username)
+                    self.task_manager.cancel_task(f"_{username}")
                     def pause_30min():
                         try:
                             if username in self.lei_god_client:
